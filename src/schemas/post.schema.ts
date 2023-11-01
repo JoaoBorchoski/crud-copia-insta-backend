@@ -12,4 +12,7 @@ const returnPostSchema = createPostSchema.extend({
     user: returnUserSchema,
 });
 
-export { createPostSchema, returnPostSchema };
+const updatePostSchema = createPostSchema.partial()
+
+
+export { createPostSchema, returnPostSchema, updatePostSchema }

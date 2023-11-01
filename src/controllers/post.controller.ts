@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { createPostService } from "../services/posts/createPost.service";
 import { listPostsService } from "../services/posts/listPosts.service";
+import { updatePostService } from "../services/posts/updatePost.service";
 
 const createPostController = async (req: Request, res: Response) => {
     const postData = req.body;
@@ -15,4 +16,13 @@ const listPostController = async (req: Request, res: Response) => {
     return res.status(201).json(listPosts);
 };
 
-export { createPostController, listPostController };
+const updatePostController = async (req: Request, res: Response) => {
+    const postData = req.body;
+    const postID: number = +req.params.id;
+
+    const update = await updatePostService(postID, postData)
+    return res.json(update).status(200)
+};
+
+
+export { createPostController, listPostController, updatePostController }
